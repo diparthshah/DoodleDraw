@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/rec">
+        <file>img/brush.jpg</file>
+        <file>img/colors.jpeg</file>
+    </qresource>
+</RCC>
