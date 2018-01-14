@@ -19,7 +19,10 @@ MainWindow::MainWindow(QWidget *parent) :
     mEnabled = false;
     mColor=QColor(Qt::black);
     mSize=DEFAULT_SIZE;
-    ui->toolBar->setIconSize(iconSize());
+    mCapStyle=Qt::SquareCap;
+    mPenLineStyle=Qt::SolidLine;
+    mPenJoinStyle=Qt::BevelJoin;
+    mShape=0;
 }
 
 MainWindow::~MainWindow()
@@ -35,12 +38,15 @@ void MainWindow::paintEvent(QPaintEvent *e)
     painter.fillRect(mImage->rect(),Qt::white);
     painter.drawImage(0,0,*mImage);
     e->accept();
+    painter.end();
+    update();
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *e)
 {
     mEnabled=true;
     mBegin=e->pos();
+    update();
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent *e)
@@ -49,21 +55,25 @@ void MainWindow::mouseMoveEvent(QMouseEvent *e)
         e->accept();
         return;
     }
-    QPen pen(mColor, 3, Qt::DashDotLine, Qt::RoundCap, Qt::RoundJoin);
-    pen.setCapStyle(Qt::RoundCap);
-    pen.setWidth(mSize);
-    mEnd=e->pos();
-    mPainter->setPen(pen);
-    mPainter->drawLine(mBegin,mEnd);
-    mBegin=mEnd;
-    update();
-    e->accept();
+
+  QPen pen(mColor);
+  pen.setCapStyle(mCapStyle);
+  pen.setStyle(mPenLineStyle);
+  pen.setWidth(mSize);
+  pen.setJoinStyle(mPenJoinStyle);
+  mEnd=e->pos();
+  mPainter->setPen(pen);
+  mPainter->drawLine(mBegin,mEnd);
+  mBegin=mEnd;
+  update();
+  e->accept();
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *e)
 {
     mEnabled=false;
     e->accept();
+    update();
 }
 
 void MainWindow::on_actionColors_triggered()
@@ -74,4 +84,103 @@ void MainWindow::on_actionColors_triggered()
 void MainWindow::on_actionBrush_Size_triggered()
 {
     mSize=QInputDialog::getInt(this,"Brush Size","Size",5,1);
+}
+
+void MainWindow::on_actionCapStyle_triggered()
+{
+    QStringList CapStyleList;
+    CapStyleList<<"SquareCap";
+    CapStyleList<<"FlatCap";
+    CapStyleList<<"RoundCap";
+
+    QString capStyleData = QInputDialog::getItem(this,"Choose CapStyle","Options",CapStyleList);
+
+    if(capStyleData=="FlatCap"){
+        mCapStyle=Qt::FlatCap;
+    }
+
+    if(capStyleData=="RoundCap"){
+        mCapStyle=Qt::RoundCap;
+    }
+
+    if(capStyleData=="SquareCap"){
+        mCapStyle=Qt::SquareCap;
+    }
+
+    update();
+}
+
+void MainWindow::on_actionLine_Style_triggered()
+{
+    QStringList LineStyleList;
+    LineStyleList<<"SolidLine";
+    LineStyleList<<"DashLine";
+    LineStyleList<<"DotLine";
+    LineStyleList<<"DashDotLine";
+    LineStyleList<<"DashDotDotLine";
+
+    QString lineStyleData = QInputDialog::getItem(this,"Choose LineStyle","Options",LineStyleList);
+
+    if(lineStyleData=="SolidLine"){
+        mPenLineStyle=Qt::SolidLine;
+    }
+
+    if(lineStyleData=="DashLine"){
+        mPenLineStyle=Qt::DashLine;
+    }
+
+    if(lineStyleData=="DotLine"){
+        mPenLineStyle=Qt::DotLine;
+    }
+
+    if(lineStyleData=="DashDotLine"){
+        mPenLineStyle=Qt::DashDotLine;
+    }
+
+    if(lineStyleData=="DashDotDotLine"){
+        mPenLineStyle=Qt::DashDotDotLine;
+    }
+
+    update();
+}
+
+void MainWindow::on_actionJoinStyle_triggered()
+{
+    QStringList JoinStyleList;
+    JoinStyleList<<"BevelJoin";
+    JoinStyleList<<"MiterJoin";
+    JoinStyleList<<"RoundJoin";
+
+    QString joinStyleData = QInputDialog::getItem(this,"Choose JoinStyle","Options",JoinStyleList);
+
+    if(joinStyleData=="BevelJoin"){
+        mPenJoinStyle=Qt::BevelJoin;
+    }
+
+    if(joinStyleData=="MiterJoin"){
+        mPenJoinStyle=Qt::MiterJoin;
+    }
+    if(joinStyleData=="RoundJoin"){
+        mPenJoinStyle=Qt::RoundJoin;
+    }
+    update();
+}
+
+void MainWindow::on_actionShapes_triggered()
+{
+    QStringList ShapesList;
+    ShapesList<<"Line";
+    ShapesList<<"Rectangle";
+
+    QString shapesData = QInputDialog::getItem(this,"Choose Shape","Options",ShapesList);
+
+    if(shapesData=="Line"){
+        mShape=1;
+    }
+
+    if(shapesData=="Rectangle"){
+        mShape=2;
+    }
+
+    update();
 }

@@ -25,6 +25,11 @@ protected:
 private slots:
     void on_actionColors_triggered();
     void on_actionBrush_Size_triggered();
+    void on_actionCapStyle_triggered();
+    void on_actionLine_Style_triggered();
+    void on_actionJoinStyle_triggered();
+
+    void on_actionShapes_triggered();
 
 private:
     Ui::MainWindow *ui;
@@ -33,8 +38,14 @@ private:
     QPoint mBegin;
     QPoint mEnd;
     bool mEnabled;
+    bool drawStarted;
     int mSize;
     QColor mColor;
+    Qt::PenCapStyle mCapStyle;
+    Qt::PenStyle mPenLineStyle;
+    Qt::PenJoinStyle mPenJoinStyle;
+    int mShape;
+    QLine mLine;
+    //QRect mRect;
 };
-
 #endif // MAINWINDOW_H

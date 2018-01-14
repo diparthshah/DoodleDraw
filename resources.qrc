@@ -1,6 +1,11 @@
 <RCC>
     <qresource prefix="/rec">
-        <file>img/brush.jpg</file>
-        <file>img/colors.jpeg</file>
+        <file>img/colors.png</file>
+	<file>img/brushsize.png</file>
+	<file>img/capstyle.png</file>
+	<file>img/linestyle.png</file>
+	<file>img/pathstyle.png</file>
+	<file>img/joinstyle.png</file>
+	<file>img/shapes.png</file>
     </qresource>
 </RCC>

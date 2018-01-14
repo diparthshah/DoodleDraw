@@ -47,12 +47,18 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionColors"/>
+   <addaction name="separator"/>
    <addaction name="actionBrush_Size"/>
+   <addaction name="actionCapStyle"/>
+   <addaction name="actionLine_Style"/>
+   <addaction name="actionJoinStyle"/>
+   <addaction name="actionShapes"/>
+   <addaction name="separator"/>
   </widget>
   <action name="actionColors">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/rec/img/colors.jpeg</normaloff>:/rec/img/colors.jpeg</iconset>
+     <normaloff>:/rec/img/colors.png</normaloff>:/rec/img/colors.png</iconset>
    </property>
    <property name="text">
     <string>Colors</string>
@@ -64,10 +70,58 @@
   <action name="actionBrush_Size">
    <property name="icon">
     <iconset resource="resources.qrc">
-     <normaloff>:/rec/img/brush.jpg</normaloff>:/rec/img/brush.jpg</iconset>
+     <normaloff>:/rec/img/brushsize.png</normaloff>:/rec/img/brushsize.png</iconset>
    </property>
    <property name="text">
     <string>Brush Size</string>
+   </property>
+  </action>
+  <action name="actionCapStyle">
+   <property name="icon">
+    <iconset theme="CapStyle" resource="resources.qrc">
+     <normaloff>:/rec/img/capstyle.png</normaloff>:/rec/img/capstyle.png</iconset>
+   </property>
+   <property name="text">
+    <string>CapStyle</string>
+   </property>
+   <property name="toolTip">
+    <string>CapStyles</string>
+   </property>
+  </action>
+  <action name="actionLine_Style">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/rec/img/linestyle.png</normaloff>:/rec/img/linestyle.png</iconset>
+   </property>
+   <property name="text">
+    <string>Line Style</string>
+   </property>
+   <property name="toolTip">
+    <string>Line Styles</string>
+   </property>
+  </action>
+  <action name="actionJoinStyle">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/rec/img/joinstyle.png</normaloff>:/rec/img/joinstyle.png</iconset>
+   </property>
+   <property name="text">
+    <string>JoinStyle</string>
+   </property>
+   <property name="toolTip">
+    <string>Join Styles</string>
+   </property>
+  </action>
+  <action name="actionShapes">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/rec/img/shapes.png</normaloff>:/rec/img/shapes.png</iconset>
+   </property>
+   <property name="text">
+    <string>Shapes</string>
+   </property>
+   <property name="toolTip">
+    <string>Shapes</string>
    </property>
   </action>
  </widget>
