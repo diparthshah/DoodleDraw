@@ -28,8 +28,13 @@ private slots:
     void on_actionCapStyle_triggered();
     void on_actionLine_Style_triggered();
     void on_actionJoinStyle_triggered();
-
     void on_actionShapes_triggered();
+
+    void on_actionSave_triggered();
+
+    void on_actionOpen_triggered();
+
+    void on_actionExit_triggered();
 
 private:
     Ui::MainWindow *ui;

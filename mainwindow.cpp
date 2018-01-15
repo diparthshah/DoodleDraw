@@ -7,6 +7,10 @@
 #include<QDesktopWidget>
 #include<QInputDialog>
 #include<QColorDialog>
+#include<QFileDialog>
+#include<QDebug>
+#include<iostream>
+#include<QMessageBox>
 #define DEFAULT_SIZE 5;
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -38,8 +42,7 @@ void MainWindow::paintEvent(QPaintEvent *e)
     painter.fillRect(mImage->rect(),Qt::white);
     painter.drawImage(0,0,*mImage);
     e->accept();
-    painter.end();
-    update();
+    //update();
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *e)
@@ -79,11 +82,13 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *e)
 void MainWindow::on_actionColors_triggered()
 {
     mColor=QColorDialog::getColor(Qt::black,this,"Color");
+    update();
 }
 
 void MainWindow::on_actionBrush_Size_triggered()
 {
     mSize=QInputDialog::getInt(this,"Brush Size","Size",5,1);
+    update();
 }
 
 void MainWindow::on_actionCapStyle_triggered()
@@ -183,4 +188,36 @@ void MainWindow::on_actionShapes_triggered()
     }
 
     update();
+}
+
+void MainWindow::on_actionSave_triggered()
+{
+    QString fileName = QFileDialog::getSaveFileName(this,"File Name","/home/diparth/untitled.png","*.png");
+    bool save = mImage->save(fileName,nullptr,100);
+
+    if(save){
+        QMessageBox::information(this,"Doodle Draw","File Saved");
+    }
+    else{
+        QMessageBox::warning(this,"Doodle Draw","Cant Save File");
+    }
+
+}
+
+void MainWindow::on_actionOpen_triggered()
+{
+    QString fileName = QFileDialog::getOpenFileName(this,"Open File","/home/",tr("Image Files (*.png *.jpg *.bmp)"));
+    bool save = mImage->load(fileName,nullptr);
+
+    if(save){
+        QMessageBox::information(this,"Doodle Draw","Your file is now open");
+    }
+    else{
+        QMessageBox::warning(this,"Doodle Draw","Cannot open file");
+    }
+}
+
+void MainWindow::on_actionExit_triggered()
+{
+    close();
 }

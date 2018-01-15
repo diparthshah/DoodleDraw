@@ -7,5 +7,8 @@
 	<file>img/pathstyle.png</file>
 	<file>img/joinstyle.png</file>
 	<file>img/shapes.png</file>
+	<file>img/saveicon.png</file>
+	<file>img/openfile.png</file>
+	<file>img/close.png</file>
     </qresource>
 </RCC>
