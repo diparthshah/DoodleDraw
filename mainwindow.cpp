@@ -23,9 +23,9 @@ MainWindow::MainWindow(QWidget *parent) :
     mEnabled = false;
     mColor=QColor(Qt::black);
     mSize=DEFAULT_SIZE;
-    mCapStyle=Qt::SquareCap;
-    mPenLineStyle=Qt::SolidLine;
-    mPenJoinStyle=Qt::BevelJoin;
+    mCapStyle=brushDialog->bCapStyle;
+    mPenLineStyle=brushDialog->bPenLineStyle;
+    mPenJoinStyle=brushDialog->bPenJoinStyle;
     mShape=0;
 }
 
@@ -59,6 +59,9 @@ void MainWindow::mouseMoveEvent(QMouseEvent *e)
         return;
     }
 
+  mCapStyle = brushDialog->bCapStyle;
+  mPenJoinStyle = brushDialog->bPenJoinStyle;
+  mPenLineStyle = brushDialog->bPenLineStyle;
   QPen pen(mColor);
   pen.setCapStyle(mCapStyle);
   pen.setStyle(mPenLineStyle);
@@ -88,86 +91,6 @@ void MainWindow::on_actionColors_triggered()
 void MainWindow::on_actionBrush_Size_triggered()
 {
     mSize=QInputDialog::getInt(this,"Brush Size","Size",5,1);
-    update();
-}
-
-void MainWindow::on_actionCapStyle_triggered()
-{
-    QStringList CapStyleList;
-    CapStyleList<<"SquareCap";
-    CapStyleList<<"FlatCap";
-    CapStyleList<<"RoundCap";
-
-    QString capStyleData = QInputDialog::getItem(this,"Choose CapStyle","Options",CapStyleList);
-
-    if(capStyleData=="FlatCap"){
-        mCapStyle=Qt::FlatCap;
-    }
-
-    if(capStyleData=="RoundCap"){
-        mCapStyle=Qt::RoundCap;
-    }
-
-    if(capStyleData=="SquareCap"){
-        mCapStyle=Qt::SquareCap;
-    }
-
-    update();
-}
-
-void MainWindow::on_actionLine_Style_triggered()
-{
-    QStringList LineStyleList;
-    LineStyleList<<"SolidLine";
-    LineStyleList<<"DashLine";
-    LineStyleList<<"DotLine";
-    LineStyleList<<"DashDotLine";
-    LineStyleList<<"DashDotDotLine";
-
-    QString lineStyleData = QInputDialog::getItem(this,"Choose LineStyle","Options",LineStyleList);
-
-    if(lineStyleData=="SolidLine"){
-        mPenLineStyle=Qt::SolidLine;
-    }
-
-    if(lineStyleData=="DashLine"){
-        mPenLineStyle=Qt::DashLine;
-    }
-
-    if(lineStyleData=="DotLine"){
-        mPenLineStyle=Qt::DotLine;
-    }
-
-    if(lineStyleData=="DashDotLine"){
-        mPenLineStyle=Qt::DashDotLine;
-    }
-
-    if(lineStyleData=="DashDotDotLine"){
-        mPenLineStyle=Qt::DashDotDotLine;
-    }
-
-    update();
-}
-
-void MainWindow::on_actionJoinStyle_triggered()
-{
-    QStringList JoinStyleList;
-    JoinStyleList<<"BevelJoin";
-    JoinStyleList<<"MiterJoin";
-    JoinStyleList<<"RoundJoin";
-
-    QString joinStyleData = QInputDialog::getItem(this,"Choose JoinStyle","Options",JoinStyleList);
-
-    if(joinStyleData=="BevelJoin"){
-        mPenJoinStyle=Qt::BevelJoin;
-    }
-
-    if(joinStyleData=="MiterJoin"){
-        mPenJoinStyle=Qt::MiterJoin;
-    }
-    if(joinStyleData=="RoundJoin"){
-        mPenJoinStyle=Qt::RoundJoin;
-    }
     update();
 }
 
@@ -220,4 +143,11 @@ void MainWindow::on_actionOpen_triggered()
 void MainWindow::on_actionExit_triggered()
 {
     close();
+}
+
+void MainWindow::on_actionBrushOptions_triggered()
+{
+    brushDialog = new BrushDialog(this);
+    brushDialog->setWindowTitle("Doodle Brush Options");
+    brushDialog->show();
 }

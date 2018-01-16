@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "brushdialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -25,9 +26,6 @@ protected:
 private slots:
     void on_actionColors_triggered();
     void on_actionBrush_Size_triggered();
-    void on_actionCapStyle_triggered();
-    void on_actionLine_Style_triggered();
-    void on_actionJoinStyle_triggered();
     void on_actionShapes_triggered();
 
     void on_actionSave_triggered();
@@ -35,6 +33,10 @@ private slots:
     void on_actionOpen_triggered();
 
     void on_actionExit_triggered();
+
+
+
+    void on_actionBrushOptions_triggered();
 
 private:
     Ui::MainWindow *ui;
@@ -52,5 +54,6 @@ private:
     int mShape;
     QLine mLine;
     //QRect mRect;
+    BrushDialog *brushDialog;
 };
 #endif // MAINWINDOW_H

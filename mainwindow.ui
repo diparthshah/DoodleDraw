@@ -55,12 +55,10 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionBrushOptions"/>
+   <addaction name="actionBrush_Size"/>
    <addaction name="actionColors"/>
    <addaction name="separator"/>
-   <addaction name="actionBrush_Size"/>
-   <addaction name="actionCapStyle"/>
-   <addaction name="actionLine_Style"/>
-   <addaction name="actionJoinStyle"/>
    <addaction name="actionShapes"/>
    <addaction name="separator"/>
   </widget>
@@ -85,40 +83,16 @@
     <string>Brush Size</string>
    </property>
   </action>
-  <action name="actionCapStyle">
+  <action name="actionBrushOptions">
    <property name="icon">
-    <iconset theme="CapStyle" resource="resources.qrc">
+    <iconset resource="resources.qrc">
      <normaloff>:/rec/img/capstyle.png</normaloff>:/rec/img/capstyle.png</iconset>
    </property>
    <property name="text">
-    <string>CapStyle</string>
+    <string>BrushOptions</string>
    </property>
    <property name="toolTip">
-    <string>CapStyles</string>
-   </property>
-  </action>
-  <action name="actionLine_Style">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/rec/img/linestyle.png</normaloff>:/rec/img/linestyle.png</iconset>
-   </property>
-   <property name="text">
-    <string>Line Style</string>
-   </property>
-   <property name="toolTip">
-    <string>Line Styles</string>
-   </property>
-  </action>
-  <action name="actionJoinStyle">
-   <property name="icon">
-    <iconset resource="resources.qrc">
-     <normaloff>:/rec/img/joinstyle.png</normaloff>:/rec/img/joinstyle.png</iconset>
-   </property>
-   <property name="text">
-    <string>JoinStyle</string>
-   </property>
-   <property name="toolTip">
-    <string>Join Styles</string>
+    <string>BrushOptions</string>
    </property>
   </action>
   <action name="actionShapes">
