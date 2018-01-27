@@ -42,7 +42,6 @@ void MainWindow::paintEvent(QPaintEvent *e)
     painter.fillRect(mImage->rect(),Qt::white);
     painter.drawImage(0,0,*mImage);
     e->accept();
-    //update();
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *e)
@@ -59,26 +58,38 @@ void MainWindow::mouseMoveEvent(QMouseEvent *e)
         return;
     }
 
-  mCapStyle = brushDialog->bCapStyle;
-  mPenJoinStyle = brushDialog->bPenJoinStyle;
-  mPenLineStyle = brushDialog->bPenLineStyle;
-  QPen pen(mColor);
-  pen.setCapStyle(mCapStyle);
-  pen.setStyle(mPenLineStyle);
-  pen.setWidth(mSize);
-  pen.setJoinStyle(mPenJoinStyle);
-  mEnd=e->pos();
-  mPainter->setPen(pen);
-  mPainter->drawLine(mBegin,mEnd);
-  mBegin=mEnd;
-  update();
-  e->accept();
+    switch(mShape){
+        case 0:
+            mEnd=e->pos();
+            BrushTool();
+            break;
+        default:
+            /* do nothing */
+            break;
+    }
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *e)
 {
     mEnabled=false;
     e->accept();
+    update();
+}
+
+void MainWindow::BrushTool()
+{
+    mShape=0;
+    mCapStyle = brushDialog->bCapStyle;
+    mPenJoinStyle = brushDialog->bPenJoinStyle;
+    mPenLineStyle = brushDialog->bPenLineStyle;
+    QPen pen(mColor);
+    pen.setCapStyle(mCapStyle);
+    pen.setStyle(mPenLineStyle);
+    pen.setWidth(mSize);
+    pen.setJoinStyle(mPenJoinStyle);
+    mPainter->setPen(pen);
+    mPainter->drawLine(mBegin,mEnd);
+    mBegin=mEnd;
     update();
 }
 

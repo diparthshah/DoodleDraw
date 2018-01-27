@@ -23,19 +23,14 @@ protected:
     void mousePressEvent(QMouseEvent *e) override;
     void mouseMoveEvent(QMouseEvent *e) override;
     void mouseReleaseEvent(QMouseEvent *e) override;
+    void BrushTool();
 private slots:
     void on_actionColors_triggered();
     void on_actionBrush_Size_triggered();
     void on_actionShapes_triggered();
-
     void on_actionSave_triggered();
-
     void on_actionOpen_triggered();
-
     void on_actionExit_triggered();
-
-
-
     void on_actionBrushOptions_triggered();
 
 private:
